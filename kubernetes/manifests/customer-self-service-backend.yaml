@@ -17,12 +17,12 @@ spec:
       containers:
         - env:
             - name: CUSTOMERCORE_BASEURL
-              value: http://customer-core:8110
+              value: http://customer-core.cldsol.mirioeggmann.ch
             - name: POLICYMANAGEMENT_TCPBROKERBINDADDRESS
               value: tcp://policy-management-backend:61616
             - name: SPRING_BOOT_ADMIN_CLIENT_URL
-              value: http://spring-boot-admin:9000
-          image: gcr.io/lakeside-mutual-2020/customer-self-service-backend
+              value: http://spring-boot-admin.cldsol.mirioeggmann.ch
+          image: mirioeggmann/lakesidemutual-customer-self-service-backend
           imagePullPolicy: Always
           name: customer-self-service-backend
           ports:
@@ -40,5 +40,22 @@ spec:
     - name: "8080"
       port: 8080
       targetPort: 8080
-  type: LoadBalancer
-  loadBalancerIP: 34.65.192.94
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: customer-self-service-backend
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - host: "customer-self-service-backend.cldsol.mirioeggmann.ch"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: customer-self-service-backend
+                port:
+                  number: 8080

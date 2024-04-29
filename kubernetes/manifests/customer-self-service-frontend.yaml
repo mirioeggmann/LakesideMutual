@@ -17,12 +17,12 @@ spec:
       containers:
         - env:
             - name: REACT_APP_CUSTOMER_MANAGEMENT_BACKEND
-              value: http://34.65.192.94:8100
+              value: http://customer-management-backend.cldsol.mirioeggmann.ch
             - name: REACT_APP_CUSTOMER_SELF_SERVICE_BACKEND
-              value: http://34.65.192.94:8080
+              value: http://customer-self-service-backend.cldsol.mirioeggmann.ch
             - name: REACT_APP_POLICY_MANAGEMENT_BACKEND
-              value: http://34.65.192.94:8090
-          image: gcr.io/lakeside-mutual-2020/customer-self-service-frontend
+              value: http://policy-management-backend.cldsol.mirioeggmann.ch
+          image: mirioeggmann/lakesidemutual-customer-self-service-frontend
           imagePullPolicy: Always
           name: customer-self-service-frontend
           ports:
@@ -40,5 +40,22 @@ spec:
     - name: "3000"
       port: 3000
       targetPort: 80
-  type: LoadBalancer
-  loadBalancerIP: 34.65.192.94
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: customer-self-service-frontend
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - host: "customer-self-service-frontend.cldsol.mirioeggmann.ch"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: customer-self-service-frontend
+                port:
+                  number: 3000

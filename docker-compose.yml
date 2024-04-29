@@ -24,13 +24,15 @@ version: "3"
 services:
   spring-boot-admin:
     build: spring-boot-admin
-    image: lakesidemutual/spring-boot-admin
+    image: mirioeggmann/lakesidemutual-spring-boot-admin
+    platform: linux/amd64
     ports:
       - "9000:9000"
 
   customer-core:
     build: customer-core
-    image: lakesidemutual/customer-core
+    image: mirioeggmann/lakesidemutual-customer-core
+    platform: linux/amd64
     environment:
       - "SPRING_BOOT_ADMIN_CLIENT_URL=http://spring-boot-admin:9000"
     ports:
@@ -38,7 +40,8 @@ services:
 
   customer-management-backend:
     build: customer-management-backend
-    image: lakesidemutual/customer-management-backend
+    image: mirioeggmann/lakesidemutual-customer-management-backend
+    platform: linux/amd64
     depends_on:
       - customer-core
     environment:
@@ -49,7 +52,8 @@ services:
 
   customer-management-frontend:
     build: customer-management-frontend
-    image: lakesidemutual/customer-management-frontend
+    image: mirioeggmann/lakesidemutual-customer-management-frontend
+    platform: linux/amd64
     depends_on:
       - customer-management-backend
     environment:
@@ -61,7 +65,8 @@ services:
 
   policy-management-backend:
     build: policy-management-backend
-    image: lakesidemutual/policy-management-backend
+    image: mirioeggmann/lakesidemutual-policy-management-backend
+    platform: linux/amd64
     depends_on:
       - customer-core
     environment:
@@ -74,7 +79,8 @@ services:
 
   policy-management-frontend:
     build: policy-management-frontend
-    image: lakesidemutual/policy-management-frontend
+    image: mirioeggmann/lakesidemutual-policy-management-frontend
+    platform: linux/amd64
     depends_on:
       - policy-management-backend
     environment:
@@ -84,7 +90,8 @@ services:
 
   customer-self-service-backend:
     build: customer-self-service-backend
-    image: lakesidemutual/customer-self-service-backend
+    image: mirioeggmann/lakesidemutual-customer-self-service-backend
+    platform: linux/amd64
     depends_on:
       - customer-core
       - policy-management-backend
@@ -97,7 +104,8 @@ services:
 
   customer-self-service-frontend:
     build: customer-self-service-frontend
-    image: lakesidemutual/customer-self-service-frontend
+    image: mirioeggmann/lakesidemutual-customer-self-service-frontend
+    platform: linux/amd64
     depends_on:
       - customer-self-service-backend
       - customer-management-backend
@@ -111,7 +119,8 @@ services:
       
   risk-management-server:
     build: risk-management-server
-    image: lakesidemutual/risk-management-server
+    image: mirioeggmann/lakesidemutual-risk-management-server
+    platform: linux/amd64
     depends_on:
       - policy-management-backend
     environment:

@@ -17,8 +17,8 @@ spec:
       containers:
         - env:
             - name: VUE_APP_POLICY_MANAGEMENT_BACKEND
-              value: http://34.65.192.94:8090
-          image: gcr.io/lakeside-mutual-2020/policy-management-frontend
+              value: http://policy-management-backend.cldsol.mirioeggmann.ch
+          image: mirioeggmann/lakesidemutual-policy-management-frontend
           imagePullPolicy: Always
           name: policy-management-frontend
           ports:
@@ -36,5 +36,22 @@ spec:
     - name: "3010"
       port: 3010
       targetPort: 80
-  type: LoadBalancer
-  loadBalancerIP: 34.65.192.94
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: policy-management-frontend
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - host: "policy-management-frontend.cldsol.mirioeggmann.ch"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: policy-management-frontend
+                port:
+                  number: 3010

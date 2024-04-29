@@ -16,5 +16,6 @@ az aks create \
   --resource-group $RESOURCE_GROUP \
   --name $MY_AKS_CLUSTER_NAME \
   --enable-managed-identity \
+  --enable-app-routing \
   --node-count 1 \
   --generate-ssh-keys
