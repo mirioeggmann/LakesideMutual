@@ -1,14 +1,7 @@
 #!/bin/bash
 
-# Set other parameters
-ENVIRONMENT="myContainerAppEnv"
 RESOURCE_GROUP="myResourceGroup"
-LOCATION="eastus"
-REGISTRY_USERNAME="ca38c814185cacr"
-REGISTRY_SERVER="ca38c814185cacr.azurecr.io"
-
 RANDOM_ID="$(openssl rand -hex 3)"
-REGION="eastus"
 MY_AKS_CLUSTER_NAME="myAKSCluster$RANDOM_ID"
 MY_DNS_LABEL="mydnslabel$RANDOM_ID"
 

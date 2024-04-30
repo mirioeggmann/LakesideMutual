@@ -1,6 +1,5 @@
 #!/bin/bash
 
-REGION="eastus"
 MY_AKS_CLUSTER_NAME="myAKSClusterdcc7bf"
 RESOURCE_GROUP="myResourceGroup"
 

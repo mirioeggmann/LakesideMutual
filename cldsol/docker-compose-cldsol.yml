@@ -1,24 +1,4 @@
-#
-# This is a docker-compose file to build and start all Lakeside Mutual
-# applications in a single command. Note that the applications will all
-# run in production mode, so there won't be any live-reloading of changes
-# or other development features. For development, we recommend to start
-# the applications invidually or use the run_all_applications scripts.
-#
-# To build the Docker images:
-#   docker-compose build
-#
-# To run the applications:
-#   docker-compose up
-#
-# Note that you might have to adjust the REACT_APP_ and VUE_APP environment
-# variables pointing to the backend services, depending on your hosting
-# environment. By default, they point to localhost, which is fine when running 
-# the services locally. In a cloud deployment, these should be changed to the 
-# public domainname of the respective backend service.
-# 
-# To shut down the applications, simply terminate the previous command.
-#
+# This is just for completeness of the Cloud Solutions Documentation.
 
 version: "3"
 services:
