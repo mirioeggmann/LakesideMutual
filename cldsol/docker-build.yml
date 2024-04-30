@@ -1,0 +1,39 @@
+
+version: "3"
+services:
+  customer-core:
+    build: ../customer-core
+    image: mirioeggmann/lakesidemutual-customer-core
+    platform: linux/amd64
+  customer-management-backend:
+    build: ../customer-management-backend
+    image: mirioeggmann/lakesidemutual-customer-management-backend
+    platform: linux/amd64
+  customer-management-frontend:
+    build: ../customer-management-frontend
+    image: mirioeggmann/lakesidemutual-customer-management-frontend
+    platform: linux/amd64
+  customer-self-service-backend:
+    build: ../customer-self-service-backend
+    image: mirioeggmann/lakesidemutual-customer-self-service-backend
+    platform: linux/amd64
+  customer-self-service-frontend:
+    build: ../customer-self-service-frontend
+    image: mirioeggmann/lakesidemutual-customer-self-service-frontend
+    platform: linux/amd64
+  policy-management-backend:
+    build: ../policy-management-backend
+    image: mirioeggmann/lakesidemutual-policy-management-backend
+    platform: linux/amd64
+  policy-management-frontend:
+    build: ../policy-management-frontend
+    image: mirioeggmann/lakesidemutual-policy-management-frontend
+    platform: linux/amd64
+  spring-boot-admin:
+    build: ../spring-boot-admin
+    image: mirioeggmann/lakesidemutual-spring-boot-admin
+    platform: linux/amd64
+  risk-management-server:
+    build: ../risk-management-server
+    image: mirioeggmann/lakesidemutual-risk-management-server
+    platform: linux/amd64

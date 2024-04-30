@@ -17,10 +17,10 @@ spec:
       containers:
         - env:
             - name: CUSTOMERCORE_BASEURL
-              value: http://customer-core:8110
+              value: http://customer-core.cldsol.mirioeggmann.ch
             - name: SPRING_BOOT_ADMIN_CLIENT_URL
-              value: http://spring-boot-admin:9000
-          image: gcr.io/lakeside-mutual-2020/policy-management-backend
+              value: http://spring-boot-admin.cldsol.mirioeggmann.ch
+          image: mirioeggmann/lakesidemutual-policy-management-backend
           imagePullPolicy: Always
           name: policy-management-backend
           ports:
@@ -40,8 +40,7 @@ spec:
     - name: "8090"
       port: 8090
       targetPort: 8090
-  type: LoadBalancer
-  loadBalancerIP: 34.65.192.94
+  type: ClusterIP
 ---
 # Not sure why, but we need two distinct LoadBalancers for this to work:
 apiVersion: v1
@@ -59,4 +58,21 @@ spec:
       port: 61616
       targetPort: 61616
   type: LoadBalancer
-  loadBalancerIP: 34.65.192.94
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: policy-management-backend
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - host: "policy-management-backend.cldsol.mirioeggmann.ch"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: policy-management-backend
+                port:
+                  number: 8090
