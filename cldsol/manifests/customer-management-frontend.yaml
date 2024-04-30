@@ -20,6 +20,8 @@ spec:
               value: http://customer-self-service-backend.cldsol.mirioeggmann.ch
             - name: REACT_APP_CUSTOMER_MANAGEMENT_BACKEND
               value: http://customer-management-backend.cldsol.mirioeggmann.ch
+            - name: REACT_APP_POLICY_MANAGEMENT_FRONTEND
+              value: http://policy-management-frontend.cldsol.mirioeggmann.ch
           image: mirioeggmann/lakesidemutual-customer-management-frontend
           imagePullPolicy: Always
           name: customer-management-frontend
