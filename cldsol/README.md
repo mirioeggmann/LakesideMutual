@@ -39,5 +39,16 @@ create database customerselfservice;
 create database policymanagement;
 create database customercore;
 create database customermanagement;
+```
 
+### Deploymentautomation
+
+```bash
+az account list
+
+az ad sp create-for-rbac \
+    --name "ghActionAzureVote" \
+    --scope /subscriptions/717153c0-886c-4922-9596-cd37aaba73d5/resourceGroups/myResourceGroup \
+    --role Contributor \
+    --json-auth
 ```
