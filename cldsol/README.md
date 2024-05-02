@@ -27,3 +27,17 @@ Then you need to rename all ingress resources to the domain you configured.
 
 * Deploy LakesideMutual to AKS: `./azure-aks-start-cldsol.sh`
 * To stop and destroy the resources you can run: `./azure-aks-stop-cldsol.sh`
+
+### Database
+
+```bash
+# on azure portal: set require_secure_transport to off and open firewall to all ip addresses
+
+mysql -h mysql-server481b72.mysql.database.azure.com -u myadmin -p
+
+create database customerselfservice;
+create database policymanagement;
+create database customercore;
+create database customermanagement;
+
+```
